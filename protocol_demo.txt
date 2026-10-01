@@ -1,0 +1,50 @@
+Протокол роботи програми ЛР7
+Політика: модель Белла–ЛаПадули з категоріями (варіант 3)
+Інтерфейс: 127.0.0.1:9099 (loopback)
+
+===== Сеанс користувача student =====
+AUTH SUCCESS: Автентифікація успішна. Політика: Белла–ЛаПадула з категоріями.
+Мітка: CONFIDENTIAL | категорії: Техніка
+PROFILE  -> OK: Профіль суб'єкта
+LIST  -> OK: Об'єктів: 14 admin file[WRITE,APPEND]; budget_2026.txt[-]; crypto_notes.txt[WRITE,APPEND]; equipment.txt[OWN,READ,WRITE,APPEND]; failuk[OWN,READ,WRITE,APPEND]; hr_memo.txt[-]; incident_plan.txt[WRITE,APPEND]; lab_guide.txt[OWN,READ,WRITE,APPEND]; personnel_secret.txt[-]; public_notice.txt[READ]; schedule.txt[OWN,READ]; staff_salaries.txt[-]; strategy.txt[-]; ts_full.txt[WRITE,APPEND]
+READ public_notice.txt -> OK: Читання дозволено. вміст='Оголошення: лабораторна робота з контролю доступу.\n'
+READ lab_guide.txt -> OK: Читання дозволено. вміст='Оновлена методичка від student.\n'
+READ grades.txt -> ERROR: Об'єкт не знайдено.
+READ strategy.txt -> DENIED: Порушення ss-властивості (no read-up): суб'єкт не домінує над об'єктом за рівнем або категоріями.
+WRITE lab_guide.txt -> OK: WRITE виконано.
+WRITE public_notice.txt -> DENIED: Порушення *-властивості (no write-down): запис знизив би секретність або розширив би категорії недопустимо.
+APPEND equipment.txt -> OK: APPEND виконано.
+CREATE student_notes.txt -> OK: Об'єкт створено. Ви є власником.
+DELETE budget_2026.txt -> DENIED: Відмовлено: суб'єкт не є власником об'єкта.
+DELETE student_notes.txt -> OK: Об'єкт видалено власником.
+
+===== Сеанс користувача Tetyana =====
+AUTH SUCCESS: Автентифікація успішна. Політика: Белла–ЛаПадула з категоріями.
+Мітка: SECRET | категорії: Фінанси, Кадри
+PROFILE  -> OK: Профіль суб'єкта
+LIST  -> OK: Об'єктів: 14 admin file[WRITE,APPEND]; budget_2026.txt[OWN,READ]; crypto_notes.txt[-]; equipment.txt[-]; failuk[-]; hr_memo.txt[OWN,READ,WRITE,APPEND]; incident_plan.txt[-]; lab_guide.txt[-]; personnel_secret.txt[-]; public_notice.txt[READ]; schedule.txt[-]; staff_salaries.txt[OWN,READ,WRITE,APPEND]; strategy.txt[-]; ts_full.txt[WRITE,APPEND]
+READ budget_2026.txt -> OK: Читання дозволено. вміст='Проект бюджету підрозділу на 2026 рік (SECRET).\n'
+READ grades.txt -> ERROR: Об'єкт не знайдено.
+READ incident_plan.txt -> DENIED: Порушення ss-властивості (no read-up): суб'єкт не домінує над об'єктом за рівнем або категоріями.
+READ lab_guide.txt -> DENIED: Порушення ss-властивості (no read-up): суб'єкт не домінує над об'єктом за рівнем або категоріями.
+WRITE budget_2026.txt -> DENIED: Порушення *-властивості (no write-down): запис знизив би секретність або розширив би категорії недопустимо.
+WRITE public_notice.txt -> DENIED: Порушення *-властивості (no write-down): запис знизив би секретність або розширив би категорії недопустимо.
+APPEND staff_salaries.txt -> OK: APPEND виконано.
+DELETE grades.txt -> ERROR: Об'єкт не знайдено.
+CREATE hr_memo.txt -> ERROR: Об'єкт з таким ім'ям уже існує.
+
+===== Сеанс користувача admin =====
+AUTH SUCCESS: Автентифікація успішна. Політика: Белла–ЛаПадула з категоріями.
+Мітка: TOP_SECRET | категорії: Фінанси, Кадри, Техніка
+PROFILE  -> OK: Профіль суб'єкта
+LIST  -> OK: Об'єктів: 14 admin file[OWN,READ,WRITE,APPEND]; budget_2026.txt[READ]; crypto_notes.txt[OWN,READ]; equipment.txt[READ]; failuk[READ]; hr_memo.txt[READ]; incident_plan.txt[OWN,READ]; lab_guide.txt[READ]; personnel_secret.txt[OWN,READ]; public_notice.txt[OWN,READ]; schedule.txt[READ]; staff_salaries.txt[READ]; strategy.txt[OWN,READ]; ts_full.txt[OWN,READ,WRITE,APPEND]
+READ incident_plan.txt -> OK: Читання дозволено. вміст='План реагування на інциденти (техніка + фінанси).\n'
+READ staff_salaries.txt -> OK: Читання дозволено. вміст='Відомість нарахувань: кадри + фінанси.\nКоментар власника.\nКоментар власника.\n'
+READ public_notice.txt -> OK: Читання дозволено. вміст='Оголошення: лабораторна робота з контролю доступу.\n'
+WRITE public_notice.txt -> DENIED: Порушення *-властивості (no write-down): запис знизив би секретність або розширив би категорії недопустимо.
+WRITE strategy.txt -> DENIED: Порушення *-властивості (no write-down): запис знизив би секретність або розширив би категорії недопустимо.
+WRITE ts_full.txt -> OK: WRITE виконано.
+APPEND crypto_notes.txt -> DENIED: Порушення *-властивості (no write-down): запис знизив би секретність або розширив би категорії недопустимо.
+CREATE admin_ts.txt -> OK: Об'єкт створено. Ви є власником.
+DELETE admin_ts.txt -> OK: Об'єкт видалено власником.
+DELETE hr_memo.txt -> DENIED: Відмовлено: суб'єкт не є власником об'єкта.

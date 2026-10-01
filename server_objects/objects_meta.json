@@ -1,0 +1,105 @@
+{
+  "public_notice.txt": {
+    "owner": "admin",
+    "level": "UNCLASSIFIED",
+    "categories": []
+  },
+  "schedule.txt": {
+    "owner": "student",
+    "level": "UNCLASSIFIED",
+    "categories": [
+      "Техніка"
+    ]
+  },
+  "lab_guide.txt": {
+    "owner": "student",
+    "level": "CONFIDENTIAL",
+    "categories": [
+      "Техніка"
+    ]
+  },
+  "equipment.txt": {
+    "owner": "student",
+    "level": "CONFIDENTIAL",
+    "categories": [
+      "Техніка"
+    ]
+  },
+  "budget_2026.txt": {
+    "owner": "Tetyana",
+    "level": "SECRET",
+    "categories": [
+      "Фінанси"
+    ]
+  },
+  "staff_salaries.txt": {
+    "owner": "Tetyana",
+    "level": "SECRET",
+    "categories": [
+      "Кадри",
+      "Фінанси"
+    ]
+  },
+  "crypto_notes.txt": {
+    "owner": "admin",
+    "level": "SECRET",
+    "categories": [
+      "Техніка"
+    ]
+  },
+  "strategy.txt": {
+    "owner": "admin",
+    "level": "TOP_SECRET",
+    "categories": [
+      "Фінанси"
+    ]
+  },
+  "personnel_secret.txt": {
+    "owner": "admin",
+    "level": "TOP_SECRET",
+    "categories": [
+      "Кадри"
+    ]
+  },
+  "incident_plan.txt": {
+    "owner": "admin",
+    "level": "TOP_SECRET",
+    "categories": [
+      "Техніка",
+      "Фінанси"
+    ]
+  },
+  "ts_full.txt": {
+    "owner": "admin",
+    "level": "TOP_SECRET",
+    "categories": [
+      "Фінанси",
+      "Кадри",
+      "Техніка"
+    ]
+  },
+  "hr_memo.txt": {
+    "owner": "Tetyana",
+    "level": "SECRET",
+    "categories": [
+      "Фінанси",
+      "Кадри"
+    ]
+  },
+  "failuk": {
+    "owner": "student",
+    "level": "CONFIDENTIAL",
+    "categories": [
+      "Техніка"
+    ]
+  },
+  "admin file": {
+    "owner": "admin",
+    "level": "TOP_SECRET",
+    "categories": [
+      "Фінанси",
+      "Кадри",
+      "Техніка"
+    ]
+  }
+}
